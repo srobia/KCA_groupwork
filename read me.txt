@@ -1,0 +1,47 @@
+Blockchain using Django
+This is a simple implementation of a blockchain using the Django web framework. It includes features such as mining blocks, sharding and access control.
+
+Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+Prerequisites
+Python 3.x
+Django 3.x
+Installing
+Clone the repository
+
+Copy code
+git clone https://github.com/<username>/blockchain-django.git
+Install the requirements
+
+Copy code
+pip install -r requirements.txt
+Run the migrations
+
+Copy code
+python manage.py makemigrations
+python manage.py migrate
+Start the development server
+
+Copy code
+python manage.py runserver
+The blockchain GUI will be available at http://127.0.0.1:8000/
+
+Usage
+Use the /create_block endpoint to create new blocks.
+Use the /register_node endpoint to register new nodes on the network.
+Use the /get_chain endpoint to view the current state of the blockchain.
+Use the /add_transaction endpoint to add new transactions to the blockchain.
+
+Built With
+Django - The web framework used
+
+Authors
+James Mutie
+Everlyne Nyandieka
+
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+Acknowledgments
+Thankyou to Group Y Members. 

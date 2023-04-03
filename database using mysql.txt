@@ -1,0 +1,56 @@
+the script to use MySQL as the database for the blockchain project using Django:
+
+Copy code
+# settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blockchain_db',
+        'USER': 'blockchain_user',
+        'PASSWORD': 'blockchain_password',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+Copy code
+#models.py
+from django.db import models
+
+class Block(models.Model):
+    previous_hash = models.CharField(max_length=64)
+    land_data = models.TextField()
+    hash = models.CharField(max_length=64)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.land_data
+
+class Node(models.Model):
+    address = models.GenericIPAddressField()
+    port = models.PositiveIntegerField()
+
+class Transaction(models.Model):
+    sender = models.CharField(max_length=64)
+    receiver = models.CharField(max_length=64)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class AccessControl(models.Model):
+    node = models.ForeignKey(Node, on_delete=models.CASCADE)
+    read = models.BooleanField()
+    write = models.BooleanField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Shard(models.Model):
+    shard_id = models.PositiveIntegerField()
+    start = models.PositiveIntegerField()
+    end = models.PositiveIntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+You need to install python mysql connector and add it to your requirements.txt
+
+Copy code
+pip install mysql-connector-python
+You also need to run the following command to create the database tables
+
+Copy code
+python manage.py makemigrations
